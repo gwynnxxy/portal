@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carousel_item', function (Blueprint $table) {
+        Schema::create('carousel_items', function (Blueprint $table) {
             $table->id('carousel_item_id');
             $table->string('carousel_name')->nullable();
             $table->string('image_path');
@@ -19,9 +19,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('carousel_item', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-         
+        Schema::table('carousel_items', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id'); 
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carousel_item');
+        Schema::dropIfExists('carousel_items');
     }
 };
